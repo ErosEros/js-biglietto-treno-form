@@ -1,30 +1,46 @@
-
-document.getElementById('age').innerHTML += `<option value="Centenario">Centenario</option>`
+// fuori dagli eventi
+document.getElementById('age').innerHTML += `<option value="Centenario">Centenario</option>`;
 
 document.querySelector("button").addEventListener('click', function(){
-    const etaDelPasseggero =  ('Quanti anni hai?');
-    const textAsNumber = parseInt (etaDelPasseggero);
-    console.log (textAsNumber);
-    // second question
-    const km = ('Quanti km devi percorrere?');
-    const Number = parseInt (km);
-    console.log (km);
+
+    const nome = document.getElementById('username') // richiamo l input username
+    console.log(nome.value);
     
-    // price for ticket
-    let ticket = km * 0.21;
-    
+    const age = document.getElementById('age');
+   
     // condition
-    if (textAsNumber < 18) {
-        let ventiPercento  = (ticket / 100) *20;
-        ticket = ticket - ventiPercento;
-    }
+    let sconto = 0
     
-    else if (textAsNumber > 65) {
-        let quarantaPercento  = (ticket / 100) *40;
-        ticket = ticket - quarantaPercento;
+    switch (age) {
+        case "Minorenne" : {sconto = 20}; break
+        case "Over65" : {sconto = 40}; break
+        case "Centenario" : {sconto = 100}; break
     }
-    document.getElementById('biglietto').innerHTML = 'price for ticket' + " " + ticket 
+    console.log (sconto)
+    
+    let km = document.getElementById('kilometri').value
+    console.log(km)
+    
+
+    const prezzoPieno = parseInt (km) *0.21 // senza parseInt con addizione avviene una concatenazione
+    console.log(prezzoPieno)
+
+    const scontoTot = (prezzoPieno / 100) *sconto 
+    console.log(prezzoPieno - scontoTot)
+
+    const total_price = (prezzoPieno - scontoTot)
+
+
+    document.getElementById('biglietto').innerHTML += ' ' + new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR",
+      }).format(total_price); // simbolo euro
+
+
 })
+
+
+
 
 
 
