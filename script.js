@@ -6,11 +6,11 @@ document.querySelector("button").addEventListener('click', function(){
     const nome = document.getElementById('username') // richiamo l input username
     console.log(nome.value);
     
-    const age = document.getElementById('age');
+    const age = document.getElementById('age').value;
    
     // condition
     let sconto = 0
-    
+    console.log(age)
     switch (age) {
         case "Minorenne" : {sconto = 20}; break
         case "Over65" : {sconto = 40}; break
@@ -28,13 +28,13 @@ document.querySelector("button").addEventListener('click', function(){
     const scontoTot = (prezzoPieno / 100) *sconto 
     console.log(prezzoPieno - scontoTot)
 
-    const total_price = (prezzoPieno - scontoTot)
+    const totalPrice = (prezzoPieno - scontoTot)
 
-
+     // simbolo euro
     document.getElementById('biglietto').innerHTML += ' ' + new Intl.NumberFormat("de-DE", {
         style: "currency",
         currency: "EUR",
-      }).format(total_price); // simbolo euro
+      }).format(totalPrice);
 
 
 })
